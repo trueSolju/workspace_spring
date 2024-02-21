@@ -1,0 +1,52 @@
+.container{
+    width: 90%;
+    margin: 0 auto;
+    border: 1px solid black;
+    border-collapse: collapse;
+    text-align: center;
+}
+/* /* > : 자식 태그 */
+.container >tbody > tr,.container >tbody > tr > td{
+    border: 1px solid black;
+    height: 500px;
+    vertical-align: top;
+    
+}
+/* ' '(한칸 띄운거) : 자손테그 */
+/* .container tr{
+
+} */
+#stu-list-table{
+    border: 1px solid black;
+    border-collapse: collapse;
+    width: 90%;
+    margin: 0 auto;
+}
+#stu-list-table tr,#stu-list-table td{
+    border: 1px solid black;
+}
+/* hover : 마우스 올리면 ~ */
+#stu-list-table tr:hover{
+    background-color: #dddddd;
+}
+.stu-detail-div table{
+    width: 90%;
+    margin: 0 auto;
+    border: 1px solid black;
+    border-collapse: collapse;
+    text-align: center;
+}
+.stu-detail-div table tr,.stu-detail-div table td{
+    border: 1px solid black;
+
+}
+.stu-detail-div>div:first-child{
+    margin-bottom: 30px;
+
+}
+#td-span:hover{
+    cursor: pointer;
+}
+.scoreInput{
+    width: 30px;
+}

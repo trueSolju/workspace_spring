@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 해당 파일에 모든 쿼리문을 작성 -->
+<mapper namespace="replyMapper">
+    <resultMap id="replyMap" type="com.green.Board2.vo.ReplyVO">
+        <result column="REPLY_NUM"      property="replyNum"/>
+        <result column="CONTENT"        property="content"/>
+        <result column="CREATE_DATE"    property="createDate"/>
+        <result column="WRITER"         property="writer"/>
+        <result column="BOARD_NUM"      property="boardNum"/>
+    </resultMap>
+	<insert id="insertReply">
+        INSERT INTO BOARD_REPLY(
+            CONTENT
+            , WRITER
+            , BOARD_NUM
+        )
+        VALUES(
+            #{content}
+            , #{writer}
+            , #{boardNum}
+        )
+    </insert>
+    <select id="selectListReply" resultMap="replyMap">
+        SELECT
+            REPLY_NUM
+            ,CONTENT
+            ,CREATE_DATE
+            ,WRITER
+        FROM BOARD_REPLY
+        WHERE BOARD_NUM=#{boardNum}
+    </select>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

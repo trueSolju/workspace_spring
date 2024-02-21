@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{fragment/car_layout}">
+
+<th:block layout:fragment="content_css">
+    <!-- html 파일이 열릴때 같이 실행되는 css -->
+    <!-- <link rel="stylesheet" href="/"> -->
+</th:block>
+
+<th:block layout:fragment="contentFragment">
+    <div class="row justify-content-center">
+        <div class="col-10">
+            <!------------------------------ 구매자명 --------------------->
+            <div class="row">
+                <div class="offset-2 col-2 text-end">
+                    구매자명
+                </div>
+                <div class="col-6 text-start">
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" placeholder="Username" aria-label="Username"
+                            aria-describedby="basic-addon1">
+                    </div>
+                </div>
+            </div>
+            <!----------------------------색상, 모델 ----------------------------->
+            <div class="row justify-content-center">
+                <div class="col-6">
+                    <!----------------------- 색상 ------------------------->
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="row">
+                                <div class="col-4 text-end">
+                                    색상
+                                </div>
+                                <div class="col-8">
+                                    <select class="form-select" aria-label="Default select example">
+                                        <option value="1">블랙</option>
+                                        <option value="2">Two</option>
+                                        <option value="3">Three</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <!---------------- 모델 ----------------->
+                            <div class="row">
+                                <div class="col-4 text-end">
+                                    모델
+                                </div>
+                                <div class="col-8">
+                                    <select class="form-select" aria-label="Default select example">
+                                        <option value="1">아반떼</option>
+                                        <option value="2">Two</option>
+                                        <option value="3">Three</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--------------------------- 연락처 ---------------------------->
+            <div class="row mt-3">
+                <div class="col-4 text-end">연락처</div>
+                <div class="col-6">
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" placeholder="Username" aria-label="Username"
+                            aria-describedby="basic-addon1">
+                    </div>
+                </div>
+            </div>
+            <!-------------------------- 버튼 ------------------------------>
+            <div class="row">
+                <div class="col text-center">
+                    <button type="button" class="btn btn-info" onclick="location.href='/carSaleList'">등록</button>
+                </div>
+            </div>
+        </div>
+</th:block>
+
+<th:block layout:fragment="content_js">
+    <!-- html 파일이 열릴때 같이 실행되는 js -->
+    <!-- <script src="/"></script> -->
+</th:block>
+
+</html>

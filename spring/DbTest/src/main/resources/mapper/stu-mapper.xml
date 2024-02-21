@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 해당 파일에 모든 쿼리문을 작성 -->
+<!-- 모든 쿼리에 세미클론은 붙이지 않는다! -->
+<mapper namespace="stuMapper">
+<!--    STUDENT 테이블과 StudentVO를 연결하는 resultMap-->
+    <resultMap id="stu" type="com.green.DbTest.vo.StudentVO">
+<!--        column : 연결할 테이블의 컬럼명-->
+<!--        property : 테이블의 컬럼과 연결할 클래스 안의 변수명-->
+        <result column="STU_NO"     property="stuNo"/>
+        <result column="STU_NAME"   property="stuName"/>
+        <result column="SCORE"      property="score"/>
+        <result column="ADDR"       property="addr"/>
+    </resultMap>
+
+    <insert id="insertStudent">
+        INSERT INTO STUDENT (
+            STU_NO
+            , STU_NAME
+            , SCORE
+            , ADDR
+        ) VALUES (
+            11
+            , '이순신'
+            , 95
+            , '부산'
+        )
+    </insert>
+    <delete id="deleteStudent">
+        DELETE FROM STUDENT
+        WHERE STU_NO=11
+    </delete>
+    <delete id="delete">
+        DELETE FROM STUDENT
+        WHERE STU_NO= #{stuNo}
+    </delete>
+<!-- 이동하고자 하는 html로 갈때 쿼리 기능이 필요한지 판단!-->
+<!--
+1.무조건 쿼리 작성 mapper.xml
+2.작성한 쿼리를 실행시길 메소드를 인터페이스에서 정의
+3.인터페이스를 구현한 클래스에서 메소드를 구현
+4.controller의 메소드에서 쿼리 실행을 위해 만든 메소드를 호출
+-->
+<!--    select만 리턴타입 중요! 조회된 데이터가 나오기 때문
+        select는 id와 함께 resultType(조회된결과의 자료형)을 하나더 가져와야함-->
+
+<!--    resultType : 자바에서 기본으로 제공하는 자료형-->
+<!--    resultMap : 개발자가 직접 만든 자료형-->
+    <select id="selectName" resultType="String">
+        SELECT STU_NAME
+        FROM STUDENT
+        WHERE STU_NO=1
+    </select>
+    <select id="selectScore" resultType="int">
+        SELECT SCORE
+        FROM STUDENT
+        WHERE STU_NO=1
+    </select>
+<!--    -->
+    <select id="selectStu" resultMap="stu">
+        SELECT
+            STU_NO
+        , STU_NAME
+        , SCORE
+        , ADDR
+        FROM STUDENT
+        WHERE STU_NO=1
+    </select>
+<!--    resultMap:한행의 데이터를 어떻게 가져올것인가-->
+    <select id="selectStuList" resultMap="stu">
+        SELECT STU_NO
+            , STU_NAME
+            , SCORE
+            , ADDR
+        FROM STUDENT
+    </select>
+
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

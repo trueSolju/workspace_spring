@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title></title>
+<style>
+     table{
+        width: 100%;
+        border: 1px solid white;
+        background-color: aqua;
+        border-collapse: collapse;
+    }
+    tr,td{
+        border: 1px solid white;
+    }
+</style>
+</head>
+<body>
+<table>
+    <tr>
+        <td>글번호</td>
+        <td>[[${boardInfo.boardNum}]] </td>
+        <td>작성자</td>
+        <td>[[${boardInfo.writer}]] </td>
+        <td>작성일</td>
+        <td>[[${boardInfo.createDate}]] </td>
+    </tr>
+    <tr>
+        <td>제목</td>
+        <td colspan="5">[[${boardInfo.title}]] </td>
+    </tr>
+    <tr>
+        <td>내용</td>
+        <td colspan="5">[[${boardInfo.content}]] </td>  
+    </tr>
+    <!-- 수정, 삭제 글 작성자이거나, 로그인한 사람이 관리자 일때만  -->
+</table>
+
+<input type="button" value="뒤로가기" onclick="location.href='/board/list'">
+<!-- 가능하면 쓰는거 별로 -->
+<!-- <input type="button" value="뒤로가기" onclick="history.back(-1)"> -->
+<th:block th:if="${session.loginInfo != null}">
+    <th:block th:if="${session.loginInfo.memberId == boardInfo.writer or session.loginInfo.isAdmin == 'Y'}">
+        <input type="button" value="수정" th:onclick="|location.href='@{/board/updateForm(boardNum=${boardInfo.boardNum})}'|">
+        <input type="button" value="삭제" th:onclick='goDelete([[${boardInfo.boardNum}]])' >
+        
+    </th:block>
+</th:block>
+<div>
+<form action="/reply/replyForm" method="post">
+        <input type="text" name="content">
+        <input type="hidden" name="boardNum" th:value="${boardInfo.boardNum}">
+        
+        <input type="submit" value="등록">
+</form>
+</div>
+<div>
+<th:block th:each="reply:${replyList}">
+    
+    <div>[[${reply.writer}]]</div>
+    <div>[[${reply.createDate}]]</div>
+    <div>[[${reply.content}]]</div>
+</th:block>
+</div>
+<script>
+    // 변수 선언
+    var a; //기존에 쓰던 변수 선언 문법
+    var aa=10;
+    var bb= 'java';
+
+    // 추천하는 방식
+    const b =10; //변하지 않는 값을 저장 할 때는 const 사용
+        //b=20; 오류 발생
+        //이걸로 사용하다가 변하면 let으로 바꿈
+
+    let c =10; // 변하는 값을 저장 할 때는 let사용
+    c=20;
+
+
+    const name='홍';
+    const num1=10;
+    const num2=20;
+    console.log(name);
+    console.log(name+'이라는 사람은 국어점수가 '+ num1+'영어점수가'+num2+'입니다');
+    //백틱
+    console.log(`${name}이라는 사람은 국어점수가 ${num1} 영어점수가 ${num2}입니다`);
+
+
+    function goDelete(boardNum){
+        location.href = `/board/delete?boardNum=${boardNum}`;
+    }
+    
+</script>
+
+</body>
+</html>

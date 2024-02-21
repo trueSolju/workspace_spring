@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title></title>
+<style>
+    table{
+        background-color: azure;
+        border: 1px solid black;
+        width: 500px;
+        border-collapse: collapse;
+    }
+    tr, td{
+        border: 1px solid black;
+    }
+</style>
+</head>
+<body>
+    <h1>최종 회원 정보 확인 화면</h1>
+    
+        <table >
+                <tr>
+                    <td>아이디</td>
+                    <td> [[${member.id}]]</td>
+                    <td>이름</td>
+                    <td>[[${member.name}]]</td>
+                </tr>
+                    <tr>
+                        <td>
+                            연락처
+                        </td>
+                        <td>
+                            <th:block th:each="each : ${member.tel}">
+                            [[${each}]]
+                        </th:block>
+                        </td>
+                        <td>이메일</td>
+                        <td> [[${member.mail}]] </td>
+                    </tr>
+                        <tr>
+                            <td>생일</td>
+                            <td colspan="3"> [[${member.birthday}]] </td>
+                        </tr>
+                            <tr>
+                                <td>관심레슨</td>
+                                <td colspan="3"> 
+                                    <th:block th:each="each : ${member.lesson}">
+                                    [[${each}]]
+                                </th:block>
+                                    </td>
+                            </tr>
+                                <tr>
+                                    <td>자기소개</td>
+                                    <td colspan="3"> [[${member.intro}]] </td>
+                                    
+                            </tr>
+            </table>
+             <input type="button" onclick="location.href='detail';" value="회원등록">
+             <input type="button" onclick="location.href='goinfo';" value="뒤로가기">
+            
+</body>
+</html>

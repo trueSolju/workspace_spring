@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title></title>
+<style>
+    .all-div{
+        width: 700px;
+        margin: auto;
+    }
+    table{
+        width: 100%;
+        border: 1px solid white;
+        background-color: aqua;
+        border-collapse: collapse;
+    }
+    tr,td{
+        border: 1px solid white;
+    }
+    .btn-div{
+        margin-top: 16px;
+        text-align: center;
+    }
+</style>
+</head>
+<body>
+    <div class="all-div">
+            <th:block th:if="${session.loginInfo != null}">
+                [[${session.loginInfo.memberName}]]님 반갑습니다.
+                <a href="/member/logout">LOGOUT</a>
+            </th:block>
+            
+            <th:block th:if="${session.loginInfo == null}">
+                <a href="/member/loginFrom">LOGIN</a>
+            </th:block>
+            
+            <form action="/board/list" method="post">
+                <div>
+                    <!-- selected는 값을 지정 -->
+                    <select name="searchType">
+                        <!-- 이전 list.html에서 제목을 선택했다면
+                        새로 열리는 list.html에서는 제목이 선택 -->
+                        <!-- 이전 list.html에서 작성자를 선택했다면
+                        새로 열리는 list.html에서는 작성자 선택 -->
+                        <option value="TITLE" th:selected="${searchVO.searchType=='TITLE'}" >제목</option>
+                        <option value="WRITER" th:selected="${searchVO.searchType=='WRITER'}" >작성자</option>
+                    </select>
+                    <!-- 커맨드객체에서 클래스명에서 소문자로 바꾼값이 넘어옴(th:value) -->
+                    <input type="text" name="searchValue" th:value="${searchVO.searchValue}">
+                    <input type="submit" value="검색">
+                </div>
+            </form>
+        
+        <table>
+            <tr>
+                <td>글번호</td>
+                <td>제목</td>
+                <td>작성자</td>
+                <td>작성일</td>
+                <td>조회수</td>
+            </tr>
+            <th:block th:if="${#lists.isEmpty(boardList)}">
+                <tr>
+                    <td colspan="5">조회된 게시글이 없습니다.</td>
+                </tr>
+            </th:block>
+            <th:block th:unless="${#lists.isEmpty(boardList)}">
+                <tr th:each="board:${boardList}">
+                    <td>[[${board.boardNum}]]</td>
+                    <td>
+                        <a th:href="@{/board/detail(boardNum=${board.boardNum})}">[[${board.title}]]</a>
+                    </td>
+                    <td>[[${board.writer}]]</td>
+                    <td>[[${board.createDate}]]</td>
+                    <td>[[${board.readCnt}]]</td>
+                </tr>
+            </th:block>
+        </table>
+        <!-- 페이징코드 -->
+        <div>
+            
+            <th:block th:if="${searchVO.prev}">
+                <a th:href="@{/board/list(nowPage=${searchVO.beginPage-1})}">이전</a>
+            </th:block>
+            <th:block th:each="i : ${#numbers.sequence(searchVO.beginPage,searchVO.endPage)}">
+                <a th:href="@{/board/list(nowPage=${i})}">[[${i}]]</a>
+            </th:block>
+            <th:block th:if="${searchVO.next}">
+                <a th:href="@{/board/list(nowPage=${searchVO.endPage+1})}">다음</a>
+            </th:block>
+            
+        </div>
+    </div>
+    <th:block th:if="${session.loginInfo != null}">
+        <div class="btn-div" >
+                <input type="button" value="글쓰기" onclick="onlist()">
+        </div>
+        
+        
+        <script>
+            function onlist(){
+                location.href = "/board/writeForm"
+            }
+        </script>
+    </th:block>
+</body>
+</html>

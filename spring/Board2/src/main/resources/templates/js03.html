@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" id="num1" value=10 >+ <input type="text" id="num2" value=20>=
+    <input type="text" id="result"> <br>
+    <input type="button" value="더하기" onclick="plus()">
+    <script>
+        
+        function plus(){
+            const num1 =document.querySelector('#num1').value;
+            const num2 =document.querySelector('#num2').value;
+            const result = parseInt(num1)+parseInt(num2);
+
+            document.querySelector('#result').value= result;       
+        }
+        
+    </script>
+</body>
+</html>

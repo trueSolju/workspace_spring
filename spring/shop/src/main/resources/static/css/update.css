@@ -1,0 +1,15 @@
+.scrollbar{
+    height: 500px;
+    overflow-y: scroll;
+}
+.scrollbar::-webkit-scrollbar{
+width: 10px;
+}
+.scrollbar::-webkit-scrollbar-thumb{
+    background: rgb(173, 171, 171);
+    border-radius: 10px;
+}
+.item-td{
+    height: 500px;
+}
+    

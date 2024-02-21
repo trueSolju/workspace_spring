@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{fragment/user_layout}">
+
+<th:block layout:fragment="content_css">
+    <!-- html 파일이 열릴때 같이 실행되는 css -->
+    <!-- <link rel="stylesheet" href="/"> -->
+</th:block>
+
+<th:block layout:fragment="contentFragment">
+    <!-- html 코드작성-->
+
+    <div class="row row-cols-5 g-4">
+        <div class="col" th:each="item : ${itemList}">
+            <div class="card">
+                <a th:href="@{/item/detailForm(itemCode=${item.itemCode})}">
+                    <img th:src="@{'/upload/'+${item.imgList[0].attachedFileName}}" class="card-img-top" alt="">
+                </a>
+                <div class="card-body">
+                    <p class="card-text">
+                        [[${item.itemName}]]</p>
+                    <p>[[${#numbers.formatCurrency(item.itemPrice)}]] </p>
+                    <p th:text="${#strings.abbreviate(item.itemIntro ?:'',10)} "></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</th:block>
+
+<th:block layout:fragment="content_js">
+    <!-- html 파일이 열릴때 같이 실행되는 js -->
+    <!-- <script src="/"></script> -->
+</th:block>
+
+</html>

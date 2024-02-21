@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{fragment/personal_layout}">
+
+<th:block layout:fragment="content_css">
+    <!-- html 파일이 열릴때 같이 실행되는 css -->
+    <!-- <link rel="stylesheet" href="/"> -->
+</th:block>
+
+<th:block layout:fragment="contentFragment">
+    <style>
+        .cart-list-table>thead {
+            --bs-table-bg: #96E9C6;
+            --bs-table-color: white;
+        }
+    </style>
+    <div class="row">
+        <div class="col">
+            <div class="row">
+                <table class="cart-list-table table table-striped table-hover text-center align-middle">
+                    <colgroup>
+                        <col width="5%">
+                        <col width="5%">
+                        <col width="30%">
+                        <col width="10%">
+                        <col width="30%">
+                        <col width="10%">
+                        <col width="10%">
+                    </colgroup>
+                    <thead>
+                        <tr>
+                            <td>No</td>
+                            <td>
+                                <input id="chkAll" onclick="checkAll()" type="checkbox" class="form-check-input"
+                                    checked>
+                            </td>
+                            <td>상품정보</td>
+                            <td>가격</td>
+                            <td>개수</td>
+                            <td>총 가격</td>
+                            <td></td>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        <th:block th:if="${#lists.isEmpty(cartViewList)}">
+                            <tr>
+                                <td colspan="7">장바구니가 비었습니다.</td>
+                            </tr>
+                        </th:block>
+
+                        <th:block th:unless="${#lists.isEmpty(cartViewList)}">
+                            <!-- state.index 반복문 도는 횟수 state는 변수명이라서 아무거나 입력 가능 -->
+                            <tr th:each="cartView, state : ${cartViewList}">
+                                <!-- 장바구니 목록갯수 - 목록 횟수 -->
+                                <td>[[${#lists.size(cartViewList)-state.index}]]</td>
+                                <td>
+                                    <input th:value="${cartView.cartCode}" type="checkbox" class="form-check-input chk"
+                                        onclick="setFinalPrice()" checked>
+                                </td>
+                                <td>
+                                    <div class="row align-items-center">
+                                        <div class="col-4">
+                                            <img width="80px;" th:src="@{'/upload/'+${cartView.attachedFileName}}"
+                                                alt="">
+                                        </div>
+                                        <div class="col-8 text-start">
+                                            [[${cartView.itemName}]]
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    [[${#numbers.formatCurrency(cartView.itemPrice)}]]
+                                </td>
+                                <td>
+                                    <div class="row">
+                                        <div class="offset-2 col-6">
+                                            <input type="number" class="form-control" th:value="${cartView.cartCnt}"
+                                                min="1">
+                                        </div>
+                                        <div class="col-4 d-grid">
+                                            <button type="button" class="btn-primary"
+                                                th:onclick="setCnt(this,[[${cartView.cartCode}]],[[${cartView.itemPrice}]])">변경</button>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <span
+                                        class="totalPrice-span">[[${#numbers.formatCurrency(cartView.totalPrice)}]]</span>
+                                </td>
+                                <td>
+                                    <div class="row">
+                                        <div class="col d-grid">
+                                            <button type="button" class="btn-primary"
+                                                th:onclick="goDelete([[${cartView.cartCode}]])">삭제</button>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+
+                        </th:block>
+
+                    </tbody>
+                </table>
+
+            </div>
+            <div class="row mb-3 mt-3">
+                <div class="col text-end">
+                    <!-- <span class="h3" >총 가격 :[[${finalPrice}]]</span> -->
+                    <span class="h3">총 가격 : ￦<span id="finalPrice-span"></span> </span>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="offset-4 col-2 d-grid">
+                    <button type="button" class="btn-primary" onclick="buys()">선택구매</button>
+                </div>
+                <div class="col-2 d-grid">
+                    <button type="button" class="btn-primary" onclick="deleteCarts()">선택삭제</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</th:block>
+
+<th:block layout:fragment="content_js">
+    <!-- html 파일이 열릴때 같이 실행되는 js -->
+    <script src="/js/content/cart/cart.js"></script>
+</th:block>
+
+</html>

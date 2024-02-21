@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title></title>
+    <style>
+        .container{
+            width: 600px;
+            margin: 0 auto;
+        }
+        table{
+            border: 1px solid white;
+            width: 100%;
+            border-collapse: collapse;
+            color: white;
+            background-color: rgb(23, 100, 136);
+        }
+        tr,td{
+            border: 1px solid white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <table>
+            
+            <tr>
+                <td>학번</td>
+                <td>[[${stuInfo.stuNo}]] </td>
+                <td>이름</td>
+                <td>[[${stuInfo.stuName}]] </td>
+            </tr>
+            <tr>
+                <td>국어점수</td>
+                <td>[[${stuInfo.korScore}]] </td>
+                <td>영어점수</td>
+                <td>[[${stuInfo.engScore}]] </td>
+            </tr>
+            <tr>
+                <td rowspan="2">자기소개</td>
+                <td colspan="3" rowspan="2">[[${stuInfo.intro}]] </td>
+            </tr>
+        </table>
+        <button type="button">뒤로가기</button>
+        <!-- 삭제하고자 하는 학생의 넘버 조회 -->
+        <input type="button" value= "학생삭제"th:onclick="|location.href=@{deta(stuNo=${stuInfo.stuNo})}|" >
+    </div>
+</body>
+</html>

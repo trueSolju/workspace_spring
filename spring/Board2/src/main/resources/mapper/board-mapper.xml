@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 해당 파일에 모든 쿼리문을 작성 -->
+<mapper namespace="boardMapper">
+
+    <resultMap id="map" type="com.green.Board2.vo.BoardVO">
+        <result column="BOARD_NUM" property="boardNum"/>
+        <result column="TITLE" property="title"/>
+        <result column="WRITER" property="writer"/>
+        <result column="CREATE_DATE" property="createDate"/>
+        <result column="READ_CNT" property="readCnt"/>
+        <result column="CONTENT" property="content"/>
+    </resultMap>
+
+    <insert id="boardInsert">
+        INSERT INTO BOARD(
+             TITLE
+            , CONTENT
+            , WRITER
+        )
+        VALUES(
+             #{title}
+            , #{content}
+            , #{writer}
+        )
+    </insert>
+    <select id="selectBoard" resultMap="map">
+        SELECT
+        BOARD_NUM
+        , TITLE
+        , WRITER
+        , CREATE_DATE
+        , READ_CNT
+        FROM BOARD
+        <if test='searchValue != null and !searchValue.equals("")'>
+        WHERE ${searchType} LIKE CONCAT('%',#{searchValue},'%')
+        </if>
+<!-- ''가 없어야 하면 $가 붙음 #을 쓰면 자동으로 ''가 붙고 숫자는 없이 알아서 해석해줌-->
+        ORDER BY BOARD_NUM DESC
+<!--        #{}->객체 getter 호출-->
+        LIMIT ${displayDataCnt} OFFSET ${(displayDataCnt)*(nowPage-1)}
+    </select>
+    <select id="selectOneBoard" resultMap="map">
+        SELECT
+            BOARD_NUM
+            , TITLE
+            , WRITER
+            , CREATE_DATE
+            , CONTENT
+        FROM BOARD
+        WHERE BOARD_NUM=#{boardNum}
+    </select>
+    <update id="updateBoard">
+        UPDATE BOARD
+        SET  TITLE =#{title}
+            ,CONTENT=#{content}
+        WHERE BOARD_NUM=#{boardNum}
+    </update>
+    <delete id="deleteBoard">
+        DELETE
+        FROM BOARD
+        WHERE BOARD_NUM = #{boardNum}
+    </delete>
+<!--    조회수 증가-->
+    <update id="updateCnt">
+        UPDATE BOARD
+        SET
+            READ_CNT = READ_CNT+1
+        WHERE BOARD_NUM = #{boardNum}
+    </update>
+    <select id="selectBoardCnt" resultType="int">
+        SELECT COUNT(BOARD_NUM)
+        FROM BOARD
+    </select>
+
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

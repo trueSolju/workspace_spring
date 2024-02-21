@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{fragment/admin_layout}">
+
+<th:block layout:fragment="content_css">
+    <!-- html 파일이 열릴때 같이 실행되는 css -->
+    <!-- <link rel="stylesheet" href="/"> -->
+</th:block>
+
+<th:block layout:fragment="contentFragment">
+    <!-- html 코드작성-->
+    <form action="/admin/regItem" method="post" enctype="multipart/form-data">
+        <div class="row mb-3 ">
+            <div class="col-sm-8">
+                <label for="" class="col-sm-2 col-form-label col-form-label-sm">카테고리</label>
+
+                <select class="form-select" aria-label="Default select example" name="cateCode">
+                    <option th:each="category : ${categoryList}" th:value="${category.cateCode}">
+                        [[${category.cateName}]]</option>
+                </select>
+            </div>
+        </div>
+        
+        <div class="row mb-3">
+            <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm">상품명</label>
+            <div class="col-sm-6">
+                <input type="text" class="form-control form-control-sm" id="colFormLabelSm" name="itemName">
+            </div>
+
+        </div>
+        <div class="row mb-3">
+            <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm">가격</label>
+            <div class="col-sm-6">
+                <input type="text" class="form-control form-control-sm" id="colFormLabelSm" name="itemPrice">
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-sm-8">
+                <label for="exampleFormControlTextarea1" class="form-label">상품소개</label>
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="itemIntro"></textarea>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-sm-8">
+                <label for="" class="form-label">상품대표이미지</label>
+                <input class="form-control" type="file" name="img">
+            </div>
+            <div class="col-sm-8">
+                <label for="" class="form-label">상품 상세 이미지</label>
+                <input class="form-control" type="file" name="imgs" multiple>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-secondary">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bag"
+                viewBox="0 0 16 16">
+                <path
+                    d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1m3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1z" />
+            </svg>상품등록</button>
+    </form>
+</th:block>
+
+<th:block layout:fragment="content_js">
+    <!-- html 파일이 열릴때 같이 실행되는 js -->
+    <!-- <script src="/"></script> -->
+</th:block>
+
+</html>

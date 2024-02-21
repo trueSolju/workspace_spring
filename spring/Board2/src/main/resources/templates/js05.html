@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="container">
+        <button type="button">원래 있는 버튼</button>
+    </div>
+    <button type="button"  onclick="addBtn()">버튼 추가</button>
+    <button type="button"  onclick="removeBtn()">버튼 삭제</button>
+
+    <script>
+        //태그 추가 및 삭제
+        function addBtn(){
+            const divTag = document.querySelector('#container');
+            //태그를 추가하는 함수
+            //첫번째 매개변수 :  태그가 삽입 될 위치
+            //두번째 매개변수 : 삽입 할 태그
+            const str = '<button type="button">버튼</button>';
+            divTag.insertAdjacentHTML('beforeend',str);
+        }
+        function removeBtn(){
+            const divTag = document.querySelector('#container');
+            //선택한 태그 및 모든 하위 태그 삭제
+            //divTag.remove();
+
+            //선택한 태그 안의 하위 태그들만 삭제
+            divTag.innerHTML = '';
+
+        }
+    </script>
+</body>
+</html>

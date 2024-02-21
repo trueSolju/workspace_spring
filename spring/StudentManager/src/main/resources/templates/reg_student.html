@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title></title>
+</head>
+<body>
+    <!-- name을 지정해주지 않으면 null 값이 들어감 -->
+    <!-- 마리아디비에서는 not null일 경우 빈값은 -->
+    <form action="regStu" method="post">
+    학번 <input type="text" name="stuNo"> <br>
+    이름 <input type="text" name="stuName"> <br>
+    국어점수 <input type="text" name="korScore"> <br>
+    영어점수 <input type="text" name="engScore"> <br>
+    학점소개
+    <textarea name="intro" cols="30" rows="10"></textarea> <br>
+    <input type="submit" value="등록완료">
+    </form>
+</body>
+</html>

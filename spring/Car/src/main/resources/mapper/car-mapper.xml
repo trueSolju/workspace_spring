@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 해당 파일에 모든 쿼리문을 작성 -->
+<mapper namespace="carMapper">
+    <resultMap id="carInfo" type="com.green.Car.car.vo.CarInfoVO">
+        <id column="MODEL_NUM" property="modelNum"/>
+        <result column="MODEL_NAME" property="modelName"/>
+        <result column="CAR_PRICE" property="carPrice"/>
+        <result column="CAR_COMPANY" property="carCompany"/>
+    </resultMap>
+    <insert id="insertCarInfo">
+        INSERT INTO CAR_INFO(
+            MODEL_NAME
+            , CAR_PRICE
+            , CAR_COMPANY
+        )
+        VALUES(
+            #{modelName}
+            , #{carPrice}
+            , #{carCompany}
+        )
+    </insert>
+    <select id="selectCarInfo" resultMap="carInfo">
+        SELECT
+            MODEL_NUM
+            , MODEL_NAME
+            , CAR_COMPANY
+        FROM CAR_INFO
+    </select>
+	
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

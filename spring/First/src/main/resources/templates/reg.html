@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title></title>
+</head>
+<body>
+<h1> 회원 등록 화면(reg_member)</h1>
+<form action="detail" method="post">
+    <table>
+        <tr>
+            <td>
+                아이디
+            </td>
+            <td>
+                <input type="text" name="id" >
+            </td>
+        </tr><br>
+        
+        <tr>
+            <td>
+                비밀번호
+            </td>
+            <td>
+                <input type="password" name="pw">
+            </td>
+        </tr><br>
+        <tr>
+            <td>
+                이름
+            </td>
+            <td>
+                <input type="text" name="name">
+            </td>
+        </tr><br>
+        <tr>
+            <td>
+                연락처
+            </td>
+            <td>
+                <select name="tel">
+                    <option value="010">010</option>
+                    <option value="011">011</option>
+                    <option value="012">012</option>
+                </select> 
+        <input type="text" name="tel">
+        <input type="text" name="tel">
+            </td>
+        </tr> <br>
+        <tr>
+            <td>
+                이메일
+            </td>
+            <td>
+                <input type="email" name="mail">
+            </td>
+        </tr><br>
+        <tr>
+            <td>
+                생일 
+            </td>
+            <td>
+                <input type="date" name="birthday"> 
+            </td>
+        </tr><br>
+    </table>
+    <input type="submit" value="회원가입">
+</form>
+</body>
+</html>

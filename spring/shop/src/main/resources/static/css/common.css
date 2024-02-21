@@ -1,0 +1,27 @@
+/* 모든 html에서 공통적으로 적용되는 css */
+
+@font-face {
+    font-family: 'KOTRA_BOLD-Bold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10-21@1.1/KOTRA_BOLD-Bold.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+body{
+    font-family: 'KOTRA_BOLD-Bold';
+    font-size: 13pt;
+}
+/* 쇼핑몰 제목 크기 변경 */
+.main-title{
+    font-size: 70pt;
+    cursor: pointer;
+    display: inline-block;
+}
+.pointer-span:hover{
+    cursor: pointer;
+}
+.header-div{
+    margin-bottom: 3rem;
+}
+.card:hover{
+    cursor: pointer;
+}

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<th:block th:fragment="carMenuFragment">
+    <div class="row mb-3">
+        <div class="col text-center">
+            <table class="table">
+                <colgroup>
+                <col width="25%">
+                <col width="25%">
+                <col width="25%">
+                <col width="25%">
+                </colgroup>
+                <tr>
+                    <td>
+                        <div class="row">
+                            <div class="col">
+                                <span class="pointer" onclick="location.href='/list'">홈</span>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="row">
+                            <div class="col">
+                                <span class="pointer" onclick="location.href='/carManagementForm'">차량관리</span>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="row">
+                            <div class="col">
+                                <span class="pointer" onclick="location.href='/saleInfo'">판매 정보 등록</span>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="row">
+                            <div class="col">
+                                <span class="pointer" onclick="location.href='/carSaleList'">판매목록</span> 
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</th:block>
+
+</html>

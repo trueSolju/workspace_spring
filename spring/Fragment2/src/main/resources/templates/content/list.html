@@ -1,0 +1,24 @@
+
+</th:block>
+<th:block layout:fragment="contentFragment">
+    <link rel="stylesheet" href="/">
+</th:block>
+<th:block layout:fragment="content_js">
+    <script src="/"></script>
+</th:block>
+</html>
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+                xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+                layout:decorate="~{fragment/layout}">
+    
+    <th:block layout:fragment="content_css">
+        <link rel="stylesheet" href="/css/menu.css">
+    </th:block>
+    <th:block layout:fragment="contentFragment">
+        <h3>list 파일입니다</h3>
+        <a href="/detail">detail파일 이동</a>
+    </th:block>
+    
+   
+</html>

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{fragment/car_layout}">
+
+<th:block layout:fragment="content_css">
+    <!-- html 파일이 열릴때 같이 실행되는 css -->
+    <!-- <link rel="stylesheet" href="/"> -->
+</th:block>
+
+<th:block layout:fragment="contentFragment">
+    <!-- html 코드 작성 -->
+    <form action="/carManagement" method="post">
+        <table class="table table-borderless">
+            <colgroup>
+                <col width="30%">
+                <col width="35%">
+                <col width="*">
+            </colgroup>
+            <tr>
+                <td colspan="3">-차량등록</td>
+            </tr>
+            <tr>
+
+                <td>
+                    <div class="row">
+                        <div class="col-3 text-end">
+                            제조사
+                        </div>
+                        <div class="col-9">
+                            <select class="form-select" name="carCompany" aria-label="Default select example">
+                                <option value="현대">현대</option>
+                                <option value="기아">기아</option>
+                                <option value="쌍용">쌍용</option>
+                            </select>
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <div class="row">
+                        <div class="col-3 text-end">
+                            모델명
+                        </div>
+                        <div class="col-9">
+                            <div class="input-group mb-3">
+                                <input type="text" name="modelName" class="form-control" aria-label="Username"
+                                    aria-describedby="basic-addon1">
+                            </div>
+                        </div>
+                <td>
+                    <div class="row">
+                        <div class="col-3 text-end">
+                            차량가격
+                        </div>
+                        <div class="col-9">
+                            <div class="input-group mb-3">
+                                <input type="text" name="carPrice" class="form-control" aria-label="Username"
+                                    aria-describedby="basic-addon1">
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3">
+                    <div class="row">
+                        <div class="col text-end">
+                            <button type="submit" class="btn btn-info">등록</button>
+                        </div>
+                    </div>
+
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3 text-end">-차량목록</td>
+            </tr>
+        </table>
+    </form>
+    <div class="row justify-content-center">
+        <div class="col-10">
+            <table class="table table-striped  text-center">
+                <colgroup>
+                    <col width="25%">
+                    <col width="40%">
+                    <col width="*">
+                </colgroup>
+                <thead>
+                    <tr>
+                        <td>
+                            모델번호
+                        </td>
+                        <td>
+                            모델명
+                        </td>
+                        <td>
+                            제조사
+                        </td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="model : ${carList}">
+                        <td>[[${model.modelNum}]] </td>
+                        <td>[[${model.modelName}]] </td>
+                        <td>[[${model.carCompany}]]</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+</th:block>
+
+<th:block layout:fragment="content_js">
+    <!-- html 파일이 열릴때 같이 실행되는 js -->
+    <!-- <script src="/"></script> -->
+</th:block>
+
+</html>

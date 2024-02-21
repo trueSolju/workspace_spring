@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <button type="button" id="btn">버튼</button> <br>
+    <input type="text" id="key">
+    
+    <script>
+        // 이벤트처리
+        const btn = document.querySelector('#btn');
+        btn.addEventListener('click',function(){
+            alert(111);
+        });
+        //input 태그에 키보드로 값을 입력 할 때마다
+        // 입력한 값을 console에 출력 시키는 이벤트 코드를 작성
+        const key = document.querySelector('#key')
+        key.addEventListener('keyup',function(){
+            console.log(key.value)
+        })
+        
+    </script>
+</body>
+</html>

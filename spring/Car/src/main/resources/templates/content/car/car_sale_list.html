@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{fragment/car_layout}">
+
+<th:block layout:fragment="content_css">
+    <!-- html 파일이 열릴때 같이 실행되는 css -->
+    <!-- <link rel="stylesheet" href="/"> -->
+</th:block>
+
+<th:block layout:fragment="contentFragment">
+    <!-- html 코드 작성 -->
+    <table class="table table-bordered text-center align-middle">
+        <colgroup>
+        <col width="10%">
+        <col width="20%">
+        <col width="10%">
+        <col width="10%">
+        <col width="10%">
+        <col width="20%">
+        <col width="20%">
+        </colgroup>
+        <thead>
+            <tr>
+                <td rowspan="2">NO</td>
+                <td colspan="4">구매자정보</td>
+                <td colspan="2">차량정보</td>
+
+            </tr>
+            <tr>
+                <td>구매자명</td>
+                <td>연락처</td>
+                <td>구매일</td>
+                <td>색상</td>
+                <td>모델명</td>
+                <td>금액</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+        </tbody>
+    </table>
+</th:block>
+
+<th:block layout:fragment="content_js">
+    <!-- html 파일이 열릴때 같이 실행되는 js -->
+    <!-- <script src="/"></script> -->
+</th:block>
+
+</html>

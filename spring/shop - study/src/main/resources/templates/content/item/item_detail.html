@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{fragment/user_layout}">
+<th:block layout:fragment="content_css">
+    <!-- html 파일이 열릴때 같이 실행되는 css -->
+    <!-- <link rel="stylesheet" href="/"> -->
+</th:block>
+
+<th:block layout:fragment="contentFragment">
+
+
+    <!-- html 코드 작성 -->
+
+
+    <div class="row justify-content-center">
+        <div class="col-8">
+            <div class="row mb-3">
+                <!---------------------------------------메인이미지---------------------------------->
+                <div class="offset-3 col-3">
+                    <th:block th:each="img : ${item.imgList}">
+                        <th:block th:if="${img.isMain =='Y'}">
+                            <img width="100%" th:src="@{'/upload/'+${img.attachedFileName}}" class="" alt="...">
+                        </th:block>
+                    </th:block>
+                </div>
+                <!---------------------------------------아이템이름---------------------------------------------->
+                <div class="col-4">
+                    <div class="row">
+
+                        <div class="row mb-3">
+                            <div class="col-12">
+                                [[${item.itemName}]]
+                            </div>
+                        </div>
+
+                        <!-----------------------------------아이템 가격----------------------------------------------->
+                        <div class="row mb-3">
+                            <div class="col-12">
+                                [[${item.itemPrice}]]
+                            </div>
+                        </div>
+                        <!-----------------------------------------총 수량---------------------------------------->
+                        <div class="row mb-3 align-item-center">
+                            <div class="col-4">
+                                수량
+                            </div>
+                            <div class="col-8">
+                                <input type="number" class="form-control" min="1" name="cartCnt"
+                                    th:oninput="setTotalPrice(this,[[${item.itemPrice}]])" value="1">
+                            </div>
+                        </div>
+
+                        <!---------------------------------------총구매가격------------------------------------->
+                        <div class="row mb-3">
+                            <div class="col">
+                                <div>
+                                    <span>총구매가격</span>
+                                    <span class="total-price-span">[[${#numbers.formatCurrency(item.itemPrice)}]]</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-----------------------------------------버튼------------------------------------------------------------------------------------------------------>
+                        <div class="row">
+                            <div class="col-6 d-grid">
+                                <button type="button" class="btn btn-success"
+                                    th:onclick="insertCart([[${session.loginInfo}]],[[${item.itemCode}]])">장바구니</button>
+                            </div>
+                            <div class="col-6 d-grid">
+                                <button type="button" class="btn btn-success">바로구매</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!---------------------------------------------소개글------------------------------------------------->
+        <div class="row mb-3 mt-3">
+            <div class="offset-2 col-8">
+                <div class="input-group">
+                    <span class="input-group-text">소개 글</span>
+                    <textarea class="form-control" aria-label="With textarea">[[${item.itemIntro}]]</textarea>
+                </div>
+            </div>
+        </div>
+        <!---------------------------------상세 이미지------------------------------------------------->
+        <th:block th:each="img : ${item.imgList}">
+            <th:block th:if="${img.isMain=='N'}">
+                <div class="row">
+                    <div class="offset-2 col-8">
+                        <img width="100%" th:src="@{'/upload/'+${img.attachedFileName}}" class="rounded float-start"
+                            alt="...">
+                    </div>
+                </div>
+            </th:block>
+        </th:block>
+    </div>
+
+
+
+</th:block>
+<th:block layout:fragment="content_js">
+    <!-- html 파일이 열릴때 같이 실행되는 js -->
+    <script src="/js/content/item/item_detail.js">
+
+    </script>
+</th:block>
+
+</html>

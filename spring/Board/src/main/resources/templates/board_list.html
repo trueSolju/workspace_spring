@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title></title>
+<style>
+    .all-div{
+        width: 700px;
+        margin: 0 auto;
+    }
+    table{
+        width: 100%;
+        border: 1px solid white;
+        border-collapse: collapse;
+        background-color: cadetblue;
+        color: white;
+        text-align: center;
+    }
+    tr,td{
+        border: 1px solid white;
+    }
+    .btn-div{
+        text-align: center;
+        margin: 16px;
+    }
+
+</style>
+</head>
+<body>
+    <div class="all-div">
+    <table>
+        <thead>
+            <tr>
+                <td>글번호</td>
+                <td>제목</td>
+                <td>작성자</td>
+                <td>작성일</td>
+                <td>조회수</td>
+            </tr>
+        </thead>
+        <tbody>
+            <th:block th:if="${#lists.isEmpty(boardList)}">
+                <tr>
+                    <td colspan="5">등록된 게시글이 없습니다</td>
+                </tr>
+            </th:block>
+                <th:block th:unless="${#lists.isEmpty(boardList)}">
+                        <tr th:each="board: ${boardList}">
+                            <td>[[${board.boardNum}]] </td>
+                            <td>
+                                <a th:href="@{detail(boardNum=${board.boardNum})}">[[${board.boardTitle}]]</a>
+                            </td>
+                            <td>[[${board.writer}]]</td>
+                            <td>[[${board.createDate}]]</td>
+                            <td>[[${board.readCnt}]]</td>
+                        </tr>
+                </th:block>
+        </tbody>
+    </table>
+</div>
+<div class="btn-div">
+<input type="button" value="글쓰기" onclick="goboard()">
+</div>
+<script>
+    function goboard(){
+        location.href= 'write'
+    }
+</script>
+</body>
+</html>
