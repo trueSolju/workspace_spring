@@ -2,6 +2,7 @@ package com.green.Car.car.controller;
 
 import com.green.Car.car.service.CarService;
 import com.green.Car.car.vo.CarInfoVO;
+import com.green.Car.car.vo.SalesInfoVO;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -36,13 +37,20 @@ public class CarController {
 
 
     //판매정보 관리
-    @GetMapping("/saleInfo")
-    public String saleInfo(){
+    @GetMapping("/saleInfoForm")
+    public String saleInfoForm(Model model){
+        model.addAttribute("carList", carService.selectCarInfo());
         return "content/car/car_sale_info";
+    }
+    @PostMapping("/saleInfo")
+    public String saleInfo(SalesInfoVO salesInfoVO){
+        carService.insetMember(salesInfoVO);
+        return "redirect:/carSaleList";
     }
     //판매목록 페이지
     @GetMapping("/carSaleList")
-    public  String saleTable(){
+    public  String saleTable(Model model){
+        model.addAttribute("memberList",carService.selectAllMember());
         return "content/car/car_sale_list";
     }
 }

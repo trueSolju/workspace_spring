@@ -8,6 +8,16 @@
         <result column="MODEL_NAME" property="modelName"/>
         <result column="CAR_PRICE" property="carPrice"/>
         <result column="CAR_COMPANY" property="carCompany"/>
+
+    </resultMap>
+    <resultMap id="sales" type="com.green.Car.car.vo.SalesInfoVO">
+        <id column="CAR_NUM" property="carNum"/>
+        <result column="MEMBER_NAME" property="memberName"/>
+        <result column="MEMBER_TEL" property="memberTel"/>
+        <result column="CAR_COLOR" property="carColor"/>
+        <result column="CAR_DATE" property="carDate"/>
+        <result column="MODEL_NUM" property="modelNum"/>
+        <association property="carInfo" resultMap="carInfo"/>
     </resultMap>
     <insert id="insertCarInfo">
         INSERT INTO CAR_INFO(
@@ -28,7 +38,35 @@
             , CAR_COMPANY
         FROM CAR_INFO
     </select>
-	
+	<insert id="insetMember">
+        INSERT INTO SALES_INFO(
+            MEMBER_NAME
+            , MEMBER_TEL
+            , CAR_COLOR
+            , MODEL_NUM
+        )
+        VALUES(
+            #{memberName}
+            , #{memberTel}
+            , #{carColor}
+            , #{modelNum}
+        )
+    </insert>
+    <select id="selectAllMember" resultMap="sales">
+        SELECT
+            CAR_NUM
+            , SALES.MODEL_NUM
+            , MEMBER_NAME
+            , MEMBER_TEL
+            , CAR_DATE
+            , CAR_COLOR
+            , MODEL_NAME
+            , CAR_PRICE
+        FROM sales_info SALES
+        INNER JOIN car_info CAR
+        ON SALES.MODEL_NUM = CAR.MODEL_NUM
+        ORDER BY CAR_DATE DESC
+    </select>
 </mapper>
 
 

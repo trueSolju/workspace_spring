@@ -8,6 +8,7 @@
 </th:block>
 
 <th:block layout:fragment="contentFragment">
+    
     <!-- html 코드 작성 -->
     <table class="table table-bordered text-center align-middle">
         <colgroup>
@@ -36,14 +37,14 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+            <tr th:each="member : ${memberList}">
+                <td>[[${member.carNum}]] </td>
+                <td>[[${member.memberName}]] </td>
+                <td>[[${member.memberTel}]] </td>
+                <td>[[${member.carDate}]]</td>
+                <td>[[${member.carColor}]]</td>
+                <td>[[${member.carInfo.modelName}]]</td>
+                <td>[[${member.carInfo.carPrice}]]</td>
             </tr>
         </tbody>
     </table>
