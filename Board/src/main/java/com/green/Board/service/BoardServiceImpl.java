@@ -1,6 +1,7 @@
 package com.green.Board.service;
 
 import com.green.Board.vo.BoardVO;
+import com.green.Board.vo.MemberVO;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -36,5 +37,15 @@ public class BoardServiceImpl implements BoardService {
     @Override
     public int deleteBoard(BoardVO boardVO) {
         return sqlSession.delete("boardMapper.deleteBoard",boardVO);
+    }
+
+    @Override
+    public void join(MemberVO memberVO) {
+        sqlSession.insert("memberMapper.join",memberVO);
+    }
+
+    @Override
+    public MemberVO login(String memberId) {
+        return sqlSession.selectOne("memberMapper.login",memberId);
     }
 }

@@ -13,12 +13,12 @@
     <table class="table table-bordered text-center align-middle">
         <colgroup>
         <col width="10%">
-        <col width="20%">
-        <col width="10%">
-        <col width="10%">
         <col width="10%">
         <col width="20%">
         <col width="20%">
+        <col width="10%">
+        <col width="15%">
+        <col width="15%">
         </colgroup>
         <thead>
             <tr>
@@ -37,8 +37,8 @@
             </tr>
         </thead>
         <tbody>
-            <tr th:each="member : ${memberList}">
-                <td>[[${member.carNum}]] </td>
+            <tr th:each="member, state : ${memberList}">
+                <td>[[${state.index+1}]] </td>
                 <td>[[${member.memberName}]] </td>
                 <td>[[${member.memberTel}]] </td>
                 <td>[[${member.carDate}]]</td>

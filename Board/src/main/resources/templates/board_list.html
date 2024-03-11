@@ -27,6 +27,25 @@
 </style>
 </head>
 <body>
+    <div class="container">
+        <th:block sec:authorize="isAnonymous()">
+        <a href="/loginForm">LOGIN</a>
+        <a href="/joinForm">JOIN</a>
+        </th:block>
+        <th:block sec:authorize="isAuthenticated()">
+            [[${#authentication.name}]]님 반갑!
+            <a href="/logout">LOGOUT</a>
+        </th:block>
+        
+            <a href="/manager" sec:authorize="hasRole('ROLE_MANAGER')" >
+                매니저전용
+            </a>
+            <a href="/admin" sec:authorize="hasRole('ROLE_ADMIN')" >관리자전용</a>
+        
+        
+        
+        <a href="/sample">시큐리티사용을 위한 html문법</a>
+    </div>
     <div class="all-div">
     <table>
         <thead>

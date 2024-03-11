@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 해당 파일에 모든 쿼리문을 작성 -->
+<mapper namespace="memberMapper">
+        <resultMap id="member" type="com.green.Board.vo.MemberVO">
+            <id column="MEMBER_ID"          property="memberId"/>
+            <result column="MEMBER_NAME"    property="memberName"/>
+            <result column="MEMBER_PW"      property="memberPw"/>
+            <result column="MEMBER_ROLL"    property="memberRoll"/>
+        </resultMap>
+
+<!--    회원가입-->
+    <insert id="join">
+        INSERT INTO SECURITY_MEMBER(
+            MEMBER_ID
+            , MEMBER_NAME
+            , MEMBER_PW
+        )VALUES(
+            #{memberId}
+            , #{memberName}
+            , #{memberPw}
+        )
+    </insert>
+<!--    시큐리티에게 로그인에 필요한 정보를 전달하기 위한 조회-->
+    <select id="login" resultMap="member">
+        SELECT MEMBER_ID
+            ,MEMBER_PW
+            ,MEMBER_ROLL
+        FROM SECURITY_MEMBER
+        WHERE MEMBER_ID = #{memberId}
+    </select>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
